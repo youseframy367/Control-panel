@@ -1,0 +1,396 @@
+ {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Orders</title>
+</head>
+<style>
+    body {
+        overflow: hidden;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .ordersDetalsTitle {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 10px 0;
+        background-color: #f9fafb;
+        padding: 10px 15px;
+        border-radius: 6px;
+    }
+    
+    .ordersDetalsTitle li {
+        flex: 1;
+        /* كل عمود ياخد نفس العرض */
+        text-align: left;
+        color: #667085;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    
+    .form select,
+    .form input::placeholder {
+        color: #858D9D;
+        font-weight: 400;
+        font-size: 16px;
+    }
+    
+    #orders-list ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 10px 15px;
+        margin: 5px 0;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: background-color 0.2s ease;
+    }
+    
+    #orders-list ul:hover {
+        background-color: #f5f7fa;
+        /* تأثير hover خفيف */
+    }
+    
+    #orders-list ul li {
+        flex: 1;
+        /* كل عمود ياخد مساحة متساوية */
+        color: #48505E;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+        padding: 0 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+
+<body>
+    <div style="display: flex; width: 100%; height: 100vh;">
+        {% include 'dashbord/sidpar.html' %}
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <header style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-sizing: border-box;
+            width: 100%;
+        ">
+
+                <!-- Search box -->
+                <div style="position: relative; flex: 1; max-width: 600px;">
+                    <i class="fa-solid fa-magnifying-glass" style="
+                    position: absolute;
+                    left: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #667085;
+                "></i>
+                    <input type="search" placeholder="Search product, supplier, order" style="
+                    width: 100%;
+                    padding: 10px 10px 10px 35px;
+                    border: 1px solid #D0D5DD;
+                    border-radius: 6px;
+                    color: #48505E;
+                    font-size: 14px;
+                    outline: none;
+                    box-sizing: border-box;
+                ">
+                </div>
+
+                <!-- Notifications + Profile -->
+                <div style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-left: 20px;
+            ">
+                    <!-- Notification bell -->
+                    <div style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 36px;
+                    height: 36px;
+                    background-color: white;
+                    border-radius: 50%;
+                    cursor: pointer;
+                ">
+                        <i class="fa-regular fa-bell" style="font-size: 20px; color: black;"></i>
+                    </div>
+
+                    <!-- Profile image -->
+                    <img style="
+                    width:45px;
+                    height:45px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                " src="{% static 'home/images/d1e55b7819616382f49e957002d3eb63ebaec044.jpg' %}">
+                </div>
+            </header>
+            <div>
+                <div style='width:"100%'>
+                    <h3 style="color:#383E49;font-weight: 500;font-size: 20px;">Overall Inventory</h3>
+                    <div class="parent" style="display: flex; justify-content: space-between;padding:5px 20px 5px 0px">
+                        <div style="width:17%;">
+                            <p style="color:#1570EF;font-weight: 600;">Categories</p>
+                            <p style="color:#5D6679;font-weight: 600;">37</p>
+                            <p style="color:#858D9D;font-size: 14px; ">Last 7 days</p>
+                        </div>
+                        <div style="width:20% ">
+                            <p style="color:#E19133;font-weight: 600;margin-bottom: 0px; ">Total Products</h3>
+                                <div style=" display: flex; justify-content: space-between; ">
+                                    <div style="margin: 0px;padding: 0px; ">
+                                        <p style="color:#5D6679;font-weight: 600;">37</p>
+                                        <p style="color:#858D9D;font-size: 14px; ">Last 7 days</p>
+                                    </div>
+                                    <div>
+                                        <p style="color:#5D6679;font-weight: 600;">₹25000</p>
+                                        <p style="color:#858D9D;font-size: 14px; ">Revenue</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div style="width:20%  ">
+                            <p style="color:#845EBC;font-weight: 600;margin-bottom: 0px; ">Top Selling</h3>
+                                <div style=" display: flex; justify-content: space-between; ">
+                                    <div style="margin: 0px;padding: 0px; ">
+                                        <p style="color:#5D6679;font-weight: 600;">5</p>
+                                        <p style="color:#858D9D;font-size: 14px; ">Last 7 days</p>
+                                    </div>
+                                    <div>
+                                        <p style="color:#5D6679;font-weight: 600;">2500</p>
+                                        <p style="color:#858D9D;font-size: 14px; ">Cost</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div style="width:20% ; ">
+                            <p style="color:#845EBC;font-weight: 600;margin-bottom: 0px; ">Low Stocks</h3>
+                                <div style=" display: flex; justify-content: space-between; ">
+                                    <div style="margin: 0px;padding: 0px; ">
+                                        <p style="color:#5D6679;font-weight: 600;">5</p>
+                                        <p style="color:#858D9D;font-size: 14px; ">Last 7 days</p>
+                                    </div>
+                                    <div>
+                                        <p style="color:#5D6679;font-weight: 600;">2500</p>
+                                        <p style="color:#858D9D;font-size: 14px; ">Cost</p>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px;justify-content: space-between;margin: 10px;">
+
+                        <h2 style="
+                    color:#444444;
+                    font-weight: 500;
+                    ">Products</h2>
+                        <div style="
+                display: flex;
+                gap: 10px;
+                
+                ">
+                            <!-- Add Product Button -->
+                            <button style="
+        padding: 10px 15px;
+        background-color: #1366D9;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+                height: 50px;
+                min-width:116px;
+                height: 40px;
+
+        transition: background-color 0.2s;
+    " onmouseover="this.style.backgroundColor='#0F54B3'" onmouseout="this.style.backgroundColor='#1366D9'" onclick="showForm()">
+Add Product    </button>
+
+                            <!-- Filter Button with Icon -->
+                            <button style="
+        padding: 10px 15px;
+        background-color: #D0D3D9;
+        color: #5D6679;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+                height: 40px;
+                width:102px;
+                outline: none;
+                border: none;
+
+        cursor: pointer;">
+        <i class="fa-solid fa-filter"></i> Filters
+    </button>
+
+                            <!-- Download All Button -->
+                            <button style="
+        padding: 10px 15px;
+        background-color: #D0D3D9;
+        color: #5D6679;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        width:118px;
+            outline: none;
+                border: none;
+                height: 40px;">
+        Download All
+    </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:100%">
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            fetch("/orders-json/")
+                                .then(response => response.json())
+                                .then(data => {
+                                    const orders = JSON.parse(data.orders);
+                                    const container = document.getElementById("orders-list");
+                                    container.innerHTML = "";
+
+                                    orders.forEach(o => {
+                                        const f = o.fields;
+
+                                        const row = document.createElement("ul");
+                                        row.className = "OrdersDetailsRow";
+                                        row.innerHTML = `
+                                                            <li>${f.product_name}</li>
+
+                                                                            <li>₹ ${f.order_value}</li>
+                    <li>${f.quantity} Packets</li>
+                                                        <li>${f.product_id}</li>
+                    <li>${f.date_of_delivery}</li>
+
+    
+                    <li>${f.category}</li>
+                    <li>${f.unit}</li>
+                    <li>${f.buying_price}</li>
+                `;
+                                        container.appendChild(row);
+                                    });
+                                })
+                                .catch(error => console.error("❌ Error fetching orders:", error));
+                        });
+                    </script>
+
+
+
+                    <!-- العناوين -->
+                    <ul class="ordersDetalsTitle">
+                        <li>Products </li>
+                        <li>Order Value</li>
+                        <li>Quantity</li>
+                        <li>Order ID</li>
+
+                        <li>Expected Delivery</li>
+
+                        <li>Category</li>
+                        <li>Unit</li>
+                        <li>Buying Price</li>
+                    </ul>
+
+                    <!-- المحتوى الديناميكي -->
+                    <div id="orders-list" style="margin-top: 10px;">
+                        <!-- الطلبات هتتحط هنا -->
+                    </div>
+                </div>
+
+
+                <div style="
+     position: absolute;
+     left: 30%;
+     top:10vh;
+     width:40%;
+     height: 80vh;
+     background-color: #f9fafb;
+     display: none;
+    " id="new-supplier-form">
+
+                    <h2 style="
+                    color:#444444;
+                    font-weight: 500;
+                    margin: 20px;
+                    ">New Order</h2>
+
+                    <form method="post" action="{% url 'orders' %}" style="display: flex; flex-direction: column; gap: 20px; width: 100%; margin: 20px 40px;" class="form" id="orderForm">
+                        {% csrf_token %}
+
+                        <!-- Product Name -->
+                        <div style="display: flex; align-items: center; width: 100%;">
+                            <label style="width: 30%; font-weight: 500; color: #48505E;">Product Name</label>
+                            <input type="text" name="product_name" placeholder="Enter Product Name" required style="width: 55%; padding: 10px; border: 1px solid #D0D5DD; border-radius: 6px;">
+                        </div>
+
+                        <!-- Product ID -->
+                        <div style="display: flex; align-items: center;">
+                            <label style="width: 30%; font-weight: 500; color: #48505E;">Product ID</label>
+                            <input type="number" name="product_id" placeholder="Enter Product ID" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+                        </div>
+
+                        <!-- Category -->
+                        <div style="display: flex; align-items: center;">
+                            <label style="width: 30%; font-weight: 500; color: #48505E;">Category</label>
+                            <input type="text" name="category" placeholder="Select product category" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+                        </div>
+
+                        <!-- Order Value -->
+                        <div style="display: flex; align-items: center;">
+                            <label style="width: 30%; font-weight: 500; color: #48505E;">Order Value</label>
+                            <input type="number" name="order_value" placeholder="Enter Order Value" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+                        </div>
+
+                        <!-- Quantity -->
+                        <div style="display: flex; align-items: center;">
+                            <label style="width: 30%; font-weight: 500; color: #48505E;">Quantity</label>
+                            <input type="number" name="quantity" placeholder="Enter Quantity" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+                        </div>
+
+                        <!-- Unit -->
+                        <div style="display: flex; align-items: center;">
+                            <label style="width: 30%; font-weight: 500; color: #48505E;">Unit</label>
+                            <input type="text" name="unit" placeholder="Enter Unit" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+                        </div>
+
+                        <!-- Buying Price -->
+                        <div style="display: flex; align-items: center;">
+                            <label style="width: 30%; font-weight: 500; color: #48505E;">Buying Price</label>
+                            <input type="number" name="buying_price" placeholder="Enter Buying Price" style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+                        </div>
+
+                        <!-- Date of Delivery -->
+                        <div style="display: flex; align-items: center;">
+                            <label style="width: 30%; font-weight: 500; color: #48505E;">Date of Delivery</label>
+                            <input type="date" name="date_of_delivery" style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+                        </div>
+
+                        <div style=" position: absolute; bottom: 30px; left:50%; display: flex; direction: rtl; gap:10px"> <button style=" font-weight: 500; font-size: 14px; background-color: #1366D9; min-width:119px; height: 40px; border: none; outline: none; color:#ffffff; border-radius: 4px; "> Add Supplier </button> <button style=" padding: 10px 15px; background-color: #D0D3D9; color: #5D6679; font-family: 'Inter', sans-serif; font-weight: 500; display: flex; align-items: center; gap: 5px; height: 40px; width:102px; outline: none; border: none; "
+                                onclick="hideForm()">Discard</button>
+                    </form>
+                    <script>
+                        function hideForm() {
+                            document.getElementById('new-supplier-form').style.display = 'none';
+                        }
+
+                        function showForm() {
+                            document.getElementById('new-supplier-form').style.display = 'block';
+                        }
+                    </script>
+                    </div>
+                </div>
+</body>
+
+</html>

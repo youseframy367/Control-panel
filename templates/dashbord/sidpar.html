@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f9fafb;
+        }
+        
+        .sidebar {
+            height: 100vh;
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            justify-content: space-between;
+        }
+        
+        .sidebar img {
+            width: 100%;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            line-height: 2;
+        }
+        
+        .sidebar ul li {
+            padding: 10px 10px 10px 0px;
+            color: #5D6679;
+            font-weight: 500;
+        }
+        
+        .sidebar ul li.active {
+            color: #1570EF;
+        }
+        
+        .overlay {
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+        
+        .warning {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            padding: 25px 20px;
+            text-align: center;
+            color: #333;
+            margin: 80px auto;
+            animation: popIn 0.3s ease;
+        }
+        
+        .warning h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 10px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-yes {
+            background-color: #10A760;
+            color: white;
+        }
+        
+        .btn-no {
+            background-color: #DA3E33;
+            color: white;
+        }
+        
+        .btn-yes:hover {
+            background-color: #0e924e;
+            box-shadow: 0 0 10px rgba(16, 167, 96, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .btn-no:hover {
+            background-color: #c13228;
+            box-shadow: 0 0 10px rgba(218, 62, 51, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div>
+            <img src="{% static 'home/images/Top.png' %}" alt="Logo">
+
+            <ul>
+                <li onclick="window.location.href='{% url 'dashbord'%}'"><i class="fa-solid fa-chart-pie"></i> Dashboard</li>
+                <li onclick="window.location.href='{% url 'Inventory'%}'"><i class="fa-solid fa-boxes-stacked"></i> Inventory</li>
+                <li><i class="fa-solid fa-chart-line"></i> Reports</li>
+                <li onclick="window.location.href='{% url 'Suppliers' %}'"><i class="fa-solid fa-truck-field"></i> Suppliers</li>
+                <li onclick="window.location.href='{% url 'orders'%}'"><i class="fa-solid fa-cart-shopping"></i> Orders</li>
+                <li onclick="window.location.href='{% url 'manageStore'%}'"><i class="fa-solid fa-store"></i> Manage Store</li>
+            </ul>
+        </div>
+        <div>
+            <ul style="margin-bottom: 80px;">
+                <li onclick="window.location.href='/admin/'">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </li>
+                <li onclick="showOverlay()"><i class="fa-solid fa-right-from-bracket"></i> Log Out</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="overlay">
+        <div class="warning">
+            <h2>Are you sure you want to log out?</h2>
+            <div class="buttons">
+                <button class="btn-yes" onclick="window.location.href='{% url 'login' %}'">Yes</button>
+                <button class="btn-no" onclick="hideOverlay()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hideOverlay() {
+            document.querySelector('.overlay').style.display = "none";
+        }
+
+        function showOverlay() {
+            document.querySelector('.overlay').style.display = "flex";
+        }
+
+        let li = document.querySelectorAll(".sidebar ul li");
+
+        li.forEach(item => {
+            item.addEventListener("click", function() {
+                li.forEach(i => i.classList.remove("active"));
+
+                this.classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+
+</html>

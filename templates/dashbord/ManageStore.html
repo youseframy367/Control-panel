@@ -1,0 +1,184 @@
+ {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Orders</title>
+</head>
+<style>
+    body {
+        overflow: hidden;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .ordersDetalsTitle {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 10px 0;
+        background-color: #f9fafb;
+        padding: 10px 15px;
+        border-radius: 6px;
+    }
+    
+    .ordersDetalsTitle li {
+        flex: 1;
+        /* كل عمود ياخد نفس العرض */
+        text-align: left;
+        color: #667085;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    
+    .form select,
+    .form input::placeholder {
+        color: #858D9D;
+        font-weight: 400;
+        font-size: 16px;
+    }
+    
+    #orders-list ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 10px 15px;
+        margin: 5px 0;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: background-color 0.2s ease;
+    }
+    
+    #orders-list ul:hover {
+        background-color: #f5f7fa;
+        /* تأثير hover خفيف */
+    }
+    
+    #orders-list ul li {
+        flex: 1;
+        /* كل عمود ياخد مساحة متساوية */
+        color: #48505E;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+        padding: 0 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .infoLocation p {
+        font-size: 14px;
+        color: #858D9D;
+        font-weight: 400;
+    }
+</style>
+
+<body>
+    <div style="display: flex; width: 100%; height: 100vh;">
+        {% include 'dashbord/sidpar.html' %}
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <header style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-sizing: border-box;
+            width: 100%;
+        ">
+
+                <!-- Search box -->
+                <div style="position: relative; flex: 1; max-width: 600px;">
+                    <i class="fa-solid fa-magnifying-glass" style="
+                    position: absolute;
+                    left: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #667085;
+                "></i>
+                    <input type="search" placeholder="Search product, supplier, order" style="
+                    width: 100%;
+                    padding: 10px 10px 10px 35px;
+                    border: 1px solid #D0D5DD;
+                    border-radius: 6px;
+                    color: #48505E;
+                    font-size: 14px;
+                    outline: none;
+                    box-sizing: border-box;
+                ">
+                </div>
+
+                <!-- Notifications + Profile -->
+                <div style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-left: 20px;
+            ">
+                    <!-- Notification bell -->
+                    <div style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 36px;
+                    height: 36px;
+                    background-color: white;
+                    border-radius: 50%;
+                    cursor: pointer;
+                ">
+                        <i class="fa-regular fa-bell" style="font-size: 20px; color: black;"></i>
+                    </div>
+
+                    <!-- Profile image -->
+                    <img style="
+                    width:45px;
+                    height:45px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                " src="{% static 'home/images/d1e55b7819616382f49e957002d3eb63ebaec044.jpg' %}">
+                </div>
+            </header>
+            <div>
+                <h3 style="color:#383E49;font-size: 20px;font-weight: 500;">Manage Store</h3>
+                {% for store in location %}
+                <div style="display: flex; align-items: flex-start; justify-content: flex-start; gap: 20px; margin: 5px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9fafb;">
+
+                    <p style="font-weight: 600; color: #48505E; min-width: 200px;height: 200px;display: flex;justify-content: center;align-items: center;">{{ store.city }}</p>
+
+                    <div>
+                        <P style="color:#5D6679; font-weight: 500;">Lisy Store</P>
+                        <div class="infoLocation">
+                            <p><strong>Location:</strong> {{ store.location }}</p>
+                            <p><strong>Street:</strong> {{ store.street }}</p>
+                            <p><strong>Manager Name:</strong> {{ store.manager_name }}</p>
+                            <p><strong>Phone Number:</strong> {{ store.phone_number }}</p>
+                            <p><strong>Created At:</strong> {{ store.created_at|date:"Y-m-d H:i" }}</p>
+                        </div>
+                    </div>
+                    <button style="color:#1366D9 ;font-size: 14px;font-weight: 500;width: 40%;display: flex;justify-content: center;align-items: center;height: 200px;background-color:#E8F1FD ;">
+                        Edit
+                    </button>
+
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+</body>
+
+</html>

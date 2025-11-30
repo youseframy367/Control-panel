@@ -1,0 +1,480 @@
+ {% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashbord</title>
+</head>
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        background-color: #f9fafb;
+        overflow: hidden;
+    }
+    
+    .contenerTop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        width: 70%;
+    }
+    
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100px;
+    }
+    
+    .card img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 130px;
+        justify-content: space-between;
+    }
+    
+    .value {
+        font-size: 14px;
+        font-weight: bold;
+        color: #5D6679;
+        font-weight: 600;
+    }
+    
+    .label {
+        font-size: 0.9rem;
+        color: #777;
+    }
+</style>
+
+<body>
+    <div style="display: flex; width: 100%; height: 100vh;">
+        {% include 'dashbord/sidpar.html' %}
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <header style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-sizing: border-box;
+            width: 100%;
+        ">
+
+                <!-- Search box -->
+                <div style="position: relative; flex: 1; max-width: 600px;">
+                    <i class="fa-solid fa-magnifying-glass" style="
+                    position: absolute;
+                    left: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #667085;
+                "></i>
+                    <input type="search" placeholder="Search product, supplier, order" style="
+                    width: 100%;
+                    padding: 10px 10px 10px 35px;
+                    border: 1px solid #D0D5DD;
+                    border-radius: 6px;
+                    color: #48505E;
+                    font-size: 14px;
+                    outline: none;
+                    box-sizing: border-box;
+                ">
+                </div>
+
+                <!-- Notifications + Profile -->
+                <div style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-left: 20px;
+            ">
+                    <!-- Notification bell -->
+                    <div style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 36px;
+                    height: 36px;
+                    background-color: white;
+                    border-radius: 50%;
+                    cursor: pointer;
+                ">
+                        <i class="fa-regular fa-bell" style="font-size: 20px; color: black;"></i>
+                    </div>
+
+                    <!-- Profile image -->
+                    <img style="
+                    width:45px;
+                    height:45px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                " src="{% static 'home/images/d1e55b7819616382f49e957002d3eb63ebaec044.jpg' %}">
+                </div>
+            </header>
+            <div style="display: flex; width: 100%;">
+                <div style="width:85%">
+                    <div>
+                        <h1 style="color:#383E49 ;font-size: 20px;font-weight: 500;">
+                            Sales Overview
+                        </h1>
+                        <div class="contenerTop">
+                            <div class="card">
+                                <img src="{% static 'home/images/Sales.png' %}" alt="Sales">
+                                <div class="info">
+                                    <p class="value">₹ 832</p>
+                                    <p class="label">Sales</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="{% static 'home/images/Revenue (1).png' %}" alt="Revenue">
+                                <div class="info">
+                                    <p class="value">₹ 18,300</p>
+                                    <p class="label">Revenue</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="{% static 'home/images/Profit.png' %}" alt="Profit">
+                                <div class="info">
+                                    <p class="value">₹ 868</p>
+                                    <p class="label">Profit</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="{% static 'home/images/Cost.png' %}" alt="Cost">
+                                <div class="info">
+                                    <p class="value">₹ 17,432</p>
+                                    <p class="label">Cost</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <h1 style="color:#383E49 ;font-size: 20px;font-weight: 500;">
+                            Purchase Overview </h1>
+                        <div class="contenerTop">
+                            <div class="card">
+                                <img src="{% static 'home/images/Purchase.png' %}" alt="Sales">
+                                <div class="info">
+                                    <p class="value">₹ 832</p>
+                                    <p class="label">Sales</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="{% static 'home/images/Cost (1).png' %}" alt="Revenue">
+                                <div class="info">
+                                    <p class="value">₹ 18,300</p>
+                                    <p class="label">Revenue</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="{% static 'home/images/Cancel.png' %}" alt="Profit">
+                                <div class="info">
+                                    <p class="value">₹ 868</p>
+                                    <p class="label">Profit</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <img src="{% static 'home/images/Profit.png' %}" alt="Cost">
+                                <div class="info">
+                                    <p class="value">₹ 17,432</p>
+                                    <p class="label">Cost</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:29% ;margin: 10px 0px 0px -100px;;transform: translateX(-20%);">
+                    <h1 style="color:#383E49;font-weight: 500;font-size: 20px;width:100%;display:flex;align-items: start;white-space: nowrap;
+;">Inventory Summary</h1>
+                    <div style="display: flex;">
+                        <div style="width:50%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                            <img src="{% static 'home/images/Quantity.png'%}">
+                            <P style="color:#5D6679;font-weight: 600;">868</P>
+                            <P style="color:#444444; font-size:14px; font-weight:500; margin:0;">Quantity in Hand</P>
+                        </div>
+                        <div style="width:50%; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                            <img src="{% static 'home/images/On the way.png' %}" alt="To be received">
+                            <p style="color:#5D6679; font-weight:600; ">200</p>
+                            <p style="color:#444444; font-size:14px; font-weight:500; margin:0;">To be received</p>
+                        </div>
+                    </div>
+
+
+                    <h1 style="color:#383E49;font-weight: 500;font-size: 20px;width:100%;display:flex;align-items: start;white-space: nowrap;
+;">Inventory Summary</h1>
+                    <div style="display: flex;">
+                        <div style="width:50%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                            <img src="{% static 'home/images/Quantity.png'%}">
+                            <P style="color:#5D6679;font-weight: 600;">868</P>
+                            <P style="color:#444444; font-size:14px; font-weight:500; margin:0;">Quantity in Hand</P>
+                        </div>
+                        <div style="width:50%; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                            <img src="{% static 'home/images/On the way.png' %}" alt="To be received">
+                            <p style="color:#5D6679; font-weight:600; ">200</p>
+                            <p style="color:#444444; font-size:14px; font-weight:500; margin:0;">To be received</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div style="width:100%; display: flex;gap:  40px;">
+                <!-- Sales & Purchase -->
+                <div style="width: 65%;margin-bottom: -15px;">
+                    <h2 style="color:#383E49; font-weight:500; font-size:20px;">Sales & Purchase</h2>
+                    <canvas id="salesPurchaseChart" style="width:300px;height:100px;"></canvas>
+                </div>
+
+                <!-- Order Summary -->
+                <div style="width: 35%; margin: auto;">
+                    <h2 style="color:#383E49; font-weight:500; font-size:20px;">Order Summary</h2>
+                    <canvas id="orderSummaryChart"></canvas>
+                </div>
+            </div>
+
+            <!-- مكتبة Chart.js (مرة واحدة فقط) -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+                /* ===========================
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   🔹 Sales & Purchase Chart
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                =========================== */
+                const salesCtx = document.getElementById('salesPurchaseChart').getContext('2d');
+
+                // 🟩 إنشاء تدرجات لونية (Gradients)
+                const greenGradient = salesCtx.createLinearGradient(0, 0, 0, 400);
+                greenGradient.addColorStop(0, '#51CC5D');
+                greenGradient.addColorStop(1, '#57DA65');
+
+                const blueGradient = salesCtx.createLinearGradient(0, 0, 0, 400);
+                blueGradient.addColorStop(0, '#817AF3');
+                blueGradient.addColorStop(0.5, '#74B0FA');
+                blueGradient.addColorStop(1, '#79D0F1');
+
+                // ⚙️ إنشاء الرسم البياني
+                new Chart(salesCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', ],
+                        datasets: [{
+                            label: 'Sales',
+                            data: [28000, 50000, 48000, 42000, 44000, 39000, 43000, 47000, 45000, 40000, ],
+                            backgroundColor: greenGradient,
+                            borderRadius: 8,
+                            barPercentage: 0.4
+                        }, {
+                            label: 'Purchase',
+                            data: [30000, 52000, 43000, 40000, 45000, 38000, 42000, 46000, 41000, 39000, ],
+                            backgroundColor: blueGradient,
+                            borderRadius: 8,
+                            barPercentage: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#667085',
+                                    font: {
+                                        size: 12,
+                                        weight: '400'
+                                    }
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#eee'
+                                },
+                                ticks: {
+                                    color: '#667085',
+                                    font: {
+                                        size: 12,
+                                        weight: '400'
+                                    },
+                                    callback: value => value.toString()
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: '#667085',
+                                    font: {
+                                        size: 12,
+                                        weight: '400'
+                                    },
+                                    usePointStyle: true,
+                                    pointStyle: 'circle'
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+            <script>
+                /* ===========================
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   🔹 Order Summary Chart
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                =========================== */
+                const orderCtx = document.getElementById('orderSummaryChart').getContext('2d');
+
+                // ⚙️ إعداد الرسم البياني الخطي
+                new Chart(orderCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Orders',
+                            data: [4000, 2000, 3000, 1800, 2600, 3200],
+                            borderColor: '#F6C64E',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.4,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#667085',
+                                    font: {
+                                        size: 12,
+                                        weight: '400'
+                                    }
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#eee'
+                                },
+                                ticks: {
+                                    color: '#667085',
+                                    font: {
+                                        size: 12,
+                                        weight: '400'
+                                    },
+                                    callback: value => value.toString()
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            </script>
+            <div>
+                <div style="width:100%;display: flex;">
+                    <div style="width:66%">
+
+
+                    </div>
+                    <div style="display: flex;width:30% ;justify-content: space-between;">
+                        <p style="color:#383E49;font-size: 20;font-weight: 500;">Low Quantity Stock</p>
+                        <p style="color:#0F50AA;font-size:14px;font-weight: 400;">See All</p>
+                    </div>
+
+                </div>
+                <div style="width:100%;display: flex;">
+                    <div style="width:66%;margin: 0px ;">
+                        <div style="display: flex;justify-content: space-between;padding: 0px 10px 0px 0px ;margin: 0px;">
+                            <p style="color:#383E49 ;font-size: 20px ;font-weight: 500 ;padding:0px;">Top Selling Stock</p>
+                            <p style="color:#0F50AA;font-size:14px;font-weight: 400;padding:0px 10px">See All</p>
+
+                        </div>
+                        <div style="display: flex;justify-content: space-between;width:96%">
+                            <p style="color:#444444;font-size: 14px;font-weight: 500;">Name</p>
+                            <p style="color:#444444;font-size: 14px;font-weight: 500;">Sold Quantity</p>
+                            <p style="color:#444444;font-size: 14px;font-weight: 500;">Remaining Quantity</p>
+                            <p style="color:#444444;font-size: 14px;font-weight: 500;">Price</p>
+                        </div>
+                        <div style="display: flex;justify-content: space-between;width:96%">
+                            <p style="color:#666666;font-size: 14px ; font-weight: 500;">Rin </p>
+                            <p style="color:#666666;font-size: 14px ; font-weight: 500;">30</p>
+                            <p style="color:#666666;font-size: 14px ; font-weight: 500;">12</p>
+                            <p style="color:#666666;font-size: 14px ; font-weight: 500;">₹ 100</p>
+                        </div>
+                        <div style="display: flex;justify-content: space-between;width:96%">
+                            <p style="color:#666666;font-size: 14px ; font-weight: 500;">Rin </p>
+                            <p style="color:#666666;font-size: 14px ; font-weight: 500;">30</p>
+                            <p style="color:#666666;font-size: 14px ; font-weight: 500;">12</p>
+                            <p style="color:#666666;font-size: 14px ; font-weight: 500;">₹ 100</p>
+                        </div>
+                    </div>
+                    <div style="width:30%">
+                        <div style="display: flex;">
+                            <img src="{% static 'home/images/Rectangle 71.png'%}">
+                            <div>
+                                <p>
+                                    Tata Salt
+                                </p>
+                                <P style="font-size: 14px;font-weight: 400;color:#667085;white-space: nowrap;
+">
+                                    Remaining Quantity : 10 Packet
+                                </P>
+                            </div>
+                            <button style="color:#AA3028; font-size: 12px;font-weight: 500; width: 40px;background-color:transparent;">Low</button>
+                        </div>
+
+
+                        <div style="display: flex;">
+                            <img src="{% static 'home/images/Rectangle 72.png'%}">
+                            <div>
+                                <p>
+                                    Tata Salt
+                                </p>
+                                <P style="font-size: 14px;font-weight: 400;color:#667085;white-space: nowrap;
+">
+                                    Remaining Quantity : 10 Packet
+                                </P>
+                            </div>
+                            <button style="color:#AA3028; font-size: 12px;font-weight: 500; width: 40px;background-color: transparent;">Low</button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+</body>
+
+</html>

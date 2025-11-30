@@ -1,0 +1,171 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>logIn</title>
+</head>
+
+<body>
+    <div style="
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    direction: rtl;
+">
+        <div style="
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        
+        ">
+            <h1 style="
+            color:#2B2F38;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    
+            
+            ">Log in to your account</h1>
+            <p style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 400;
+                color:#667085;
+                margin-top: 0px;
+
+            
+            
+            ">Welcome back! Please enter your details.</p>
+            <form style="
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    direction: ltr;
+    font-family: 'Inter', sans-serif;
+" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <!-- Email -->
+                <div style="
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    ">
+                    <label for="email" style="
+            color: #48505E;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        ">Email</label>
+                    <input id="email" type="email" placeholder="Enter your email" name="email" required style="
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #D0D5DD;
+            border-radius: 6px;
+            color: #667085;
+            font-size: 14px;
+            font-weight: 400;
+            outline: none;
+            transition: border-color 0.2s;
+        " onfocus="this.style.borderColor='#2B2F38'" onblur="this.style.borderColor='#D0D5DD'">
+                </div>
+
+                <!-- Password -->
+                <div style="
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    ">
+                    <label for="password" style="
+            color: #48505E;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        ">Password</label>
+                    <input id="password" type="password" placeholder="Enter your password" required name="Password" style="
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #D0D5DD;
+            border-radius: 6px;
+            color: #667085;
+            font-size: 14px;
+            font-weight: 400;
+            outline: none;
+            transition: border-color 0.2s;
+        " onfocus="this.style.borderColor='#2B2F38'" onblur="this.style.borderColor='#D0D5DD'">
+                </div>
+
+                <!-- تذكّر ونسيت الباسورد -->
+                <div style="
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 13px;
+        color: #667085;
+    ">
+                    <label style="display: flex; align-items: center; gap: 5px;">
+            <input type="checkbox" style="accent-color:#1366D9;">
+            Remember for 30 days
+        </label>
+                    <a href="#" style="color:#1366D9; text-decoration:none; font-weight:500;">Forgot password?</a>
+                </div>
+
+                <!-- زرار تسجيل الدخول -->
+                <button type="submit" style="
+        width: 50%;
+        padding: 10px;
+        color: white;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background-color 0.2s;
+        background-color: #1366D9;  
+            font-family: 'Inter', sans-serif;
+
+        "> Sign in</button>
+            </form>
+
+
+
+            <p style=" direction: ltr; height: 30px; width: 100%; display: flex; justify-content: center; align-items: center; font-weight: 500;           font-family: 'Inter', sans-serif;
+ ">
+                <img style="
+                margin: 5px;
+                " src=" {% static 'home/images/Social icon.png'%} " alt="Google Logo " />Sign in with Google</p>
+
+            <p style="
+                        font-family: 'Inter', sans-serif;
+                        color:#667085;
+
+            ">Don’t have an account?<a href="{% url 'creatAcount' %}" style="text-decoration: none;color:#1366D9">Sign up</a></p>
+
+        </div>
+        <div style=" width: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; "> <img src="{% static 'home/images/Logo.png' %} " alt="Logo " />
+        </div>
+    </div>
+
+
+</body>
+
+</html>

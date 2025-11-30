@@ -1,0 +1,399 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers</title>
+</head>
+<style>
+    body {
+        overflow: hidden;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    header {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    header input {
+        padding: 10px;
+        width: 85%;
+    }
+    
+    .form select,
+    .form input::placeholder {
+        color: #858D9D;
+        font-weight: 400;
+        font-size: 16px;
+    }
+    
+    .SuppliersDetalsTitle {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 10px 0;
+        background-color: #f9fafb;
+        padding: 10px 15px;
+        border-radius: 6px;
+    }
+    
+    .SuppliersDetalsTitle li {
+        flex: 1;
+        /* كل عمود ياخد نفس العرض */
+        text-align: left;
+        color: #667085;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    
+    #suppliers-list ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 10px 15px;
+        margin: 5px 0;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: background-color 0.2s ease;
+    }
+    
+    #suppliers-list ul:hover {
+        background-color: #f5f7fa;
+        /* تأثير hover خفيف */
+    }
+    
+    #suppliers-list ul li {
+        flex: 1;
+        /* كل عمود ياخد مساحة متساوية */
+        color: #48505E;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+        padding: 0 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+
+<body>
+
+    <div style="display: flex; width: 100%; height: 100vh;">
+        {% include 'dashbord/sidpar.html' %}
+
+        <!-- الـ main content -->
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <header style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-sizing: border-box;
+            width: 100%;
+        ">
+
+                <!-- Search box -->
+                <div style="position: relative; flex: 1; max-width: 600px;">
+                    <i class="fa-solid fa-magnifying-glass" style="
+                    position: absolute;
+                    left: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #667085;
+                "></i>
+                    <input type="search" placeholder="Search product, supplier, order" style="
+                    width: 100%;
+                    padding: 10px 10px 10px 35px;
+                    border: 1px solid #D0D5DD;
+                    border-radius: 6px;
+                    color: #48505E;
+                    font-size: 14px;
+                    outline: none;
+                    box-sizing: border-box;
+                ">
+                </div>
+
+                <!-- Notifications + Profile -->
+                <div style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-left: 20px;
+            ">
+                    <!-- Notification bell -->
+                    <div style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 36px;
+                    height: 36px;
+                    background-color: white;
+                    border-radius: 50%;
+                    cursor: pointer;
+                ">
+                        <i class="fa-regular fa-bell" style="font-size: 20px; color: black;"></i>
+                    </div>
+
+                    <!-- Profile image -->
+                    <img style="
+                    width:45px;
+                    height:45px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                " src="{% static 'home/images/d1e55b7819616382f49e957002d3eb63ebaec044.jpg' %}">
+                </div>
+            </header>
+            <div style="display: flex; gap: 10px;justify-content: space-between;margin: 10px;">
+
+                <h2 style="
+                    color:#444444;
+                    font-weight: 500;
+                    ">Suppliers</h2>
+                <div style="
+                display: flex;
+                gap: 10px;
+                
+                ">
+                    <!-- Add Product Button -->
+                    <button style="
+        padding: 10px 15px;
+        background-color: #1366D9;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+                height: 50px;
+                min-width:116px;
+                height: 40px;
+
+        transition: background-color 0.2s;
+    " onmouseover="this.style.backgroundColor='#0F54B3'" onmouseout="this.style.backgroundColor='#1366D9'" onclick="showForm()">
+        Add Suppliers
+    </button>
+
+                    <!-- Filter Button with Icon -->
+                    <button style="
+        padding: 10px 15px;
+        background-color: #D0D3D9;
+        color: #5D6679;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+                height: 40px;
+                width:102px;
+                outline: none;
+                border: none;
+
+        cursor: pointer;">
+        <i class="fa-solid fa-filter"></i> Filters
+    </button>
+
+                    <!-- Download All Button -->
+                    <button style="
+        padding: 10px 15px;
+        background-color: #D0D3D9;
+        color: #5D6679;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        width:118px;
+            outline: none;
+                border: none;
+                height: 40px;">
+        Download All
+    </button>
+                </div>
+            </div>
+            <script>
+                fetch("/suppliers-json/")
+                    .then(response => response.json())
+                    .then(data => {
+                        const suppliers = JSON.parse(data.suppliers);
+                        const container = document.getElementById("suppliers-list");
+                        container.innerHTML = "";
+
+                        suppliers.forEach(s => {
+                            const fields = s.fields;
+                            const onTheWay = fields.Type === "Taking return";
+
+                            const row = document.createElement("ul");
+                            row.className = "SuppliersDetailsRow";
+                            row.innerHTML = `
+                <li>${fields.SupplierName}</li>
+                <li>${fields.Product}</li>
+                <li>${fields.ContactNumber}</li>
+                <li>${fields.Email}</li>
+                <li class="type">${fields.Type}</li>
+                <li>${onTheWay ? "✅" : "❌"}</li>
+            `;
+
+                            // ✅ تلوين النوع
+                            const typeLi = row.querySelector(".type");
+                            if (onTheWay) {
+                                typeLi.style.color = "#10A760";
+                                typeLi.style.fontWeight = "600";
+                            } else {
+                                typeLi.style.color = "#DA3E33";
+                                typeLi.style.fontWeight = "600";
+                            }
+
+                            container.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching suppliers:", error));
+            </script>
+
+            <div style="width:100%">
+                <ul class="SuppliersDetalsTitle">
+                    <li>SupplierName</li>
+                    <li>Product</li>
+                    <li>ContactNumber</li>
+                    <li>Email</li>
+                    <li>Type</li>
+                    <li>OnTheWay</li>
+
+                </ul>
+                <div id="suppliers-list" style="margin-top: 10px;">
+                    <!-- هنا هيتحط الموردين ديناميكياً -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hideForm() {
+            document.getElementById("new-supplier-form").style.display = "none";
+        }
+
+        function showForm() {
+            document.getElementById("new-supplier-form").style.display = "block";
+        }
+    </script>
+
+
+    <div style="
+     position: absolute;
+     left: 30%;
+     top:10vh;
+     width:40%;
+     height: 80vh;
+     background-color: #f9fafb;
+    display: none;
+    " id="new-supplier-form">
+
+        <h2 style="
+                    color:#444444;
+                    font-weight: 500;
+                    margin: 20px;
+                    ">New Supplier</h2>
+        <div style="display: flex;align-items: center;margin-left: 50%;transform: translateX(-50%);">
+            <img style="margin:15px 10px;" src="{% static 'home/images/Group 1130.png' %}" alt="icon">
+            <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;margin: 10px;">
+                <p style="color:#858D9D; font-weight: 400;font-size: 14px;margin-bottom: 0px;">Drag image here</p>
+                <p style="color:#858D9D; font-weight: 400;font-size: 14px;margin: 5px;">or</p>
+                <a href="#" style="text-decoration: none;color: #1366D9;">Browse image</a>
+            </div>
+        </div>
+        <form method="post" action="{% url 'Suppliers' %}" style="
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin:20px 40px;
+" class="form">
+            {% csrf_token %}
+            <!-- كل صف -->
+            <div style="display: flex; align-items: center;  width: 100%;">
+                <label style="width: 30%; font-weight: 500; color: #48505E;">Supplier Name</label>
+                <input type="text" name="SupplierName" placeholder="Enter supplier name" required style="width: 55%; padding: 10px; border: 1px solid #D0D5DD; border-radius: 6px;">
+            </div>
+
+            <div style="display: flex; align-items: center; ">
+                <label style="width: 30%; font-weight: 500; color: #48505E;">Product</label>
+                <input type="text" name="Product" placeholder="Enter product" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+            </div>
+
+            <div style="display: flex; align-items: center;">
+                <label style="width: 30%; font-weight: 500; color: #48505E">Category</label>
+                <input type="text" name="Category" placeholder="Select product category" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+            </div>
+
+            <div style="display: flex; align-items: center; ">
+                <label style="width: 30%; font-weight: 500; color: #48505E;">Buying Price</label>
+                <input type="text" name="BuyingPrice" placeholder="Enter buying price" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+            </div>
+
+            <div style="display: flex; align-items: center;">
+                <label style="width: 30%; font-weight: 500; color: #48505E;">Contact Number</label>
+                <input type="text" name="ContactNumber" placeholder="Contact Number" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+            </div>
+
+            <div style="display: flex; align-items: center;">
+                <label style="width: 30%; font-weight: 500; color: #48505E;">ُEmail</label>
+                <input type="email" name="Email" placeholder="Enter Email" required style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+            </div>
+
+            <div style="display: flex; align-items: center;">
+                <label style="width: 30%; font-weight: 500; color: #48505E;">Type</label>
+                <select id="country" name="Type" style="width: 55%; padding: 8px; border: 1px solid #D0D5DD; border-radius: 6px;">
+            <option value="Not taking return">Not taking return</option>
+            <option value="Taking return" selected>Taking return</option>
+        </select>
+            </div>
+            <div style="
+            position: absolute;
+            bottom: 30px;
+            left:50%;
+            display: flex;
+            direction: rtl;
+            gap:10px">
+                <button style="
+                font-weight: 500;
+                font-size: 14px;
+                background-color: #1366D9;
+                min-width:119px;
+                height: 40px;
+                border: none;
+                outline: none;
+                color:#ffffff;
+                border-radius: 4px;
+                    ">
+                    Add Supplier
+                </button>
+                <button style="
+                 padding: 10px 15px;
+        background-color: #D0D3D9;
+        color: #5D6679;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+                height: 40px;
+                width:102px;
+                outline: none;
+                border: none;
+                " onclick="hideForm()">Discard</button>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>
